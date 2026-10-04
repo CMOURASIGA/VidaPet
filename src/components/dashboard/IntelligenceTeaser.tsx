@@ -123,8 +123,8 @@ export const IntelligenceTeaser: React.FC<IntelligenceTeaserProps> = ({
         </div>
       )}
 
-      <p className="text-[10px] text-slate-400 mt-2">
-        * As respostas deste MVP são geradas em tempo real a partir dos dados locais da demonstração.
+      <p className="text-[10px] text-slate-300/80 mt-2">
+        * As respostas desta demonstração são calculadas a partir dos dados fictícios armazenados localmente neste navegador.
       </p>
     </div>
   );

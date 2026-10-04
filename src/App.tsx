@@ -40,6 +40,7 @@ function MainApp() {
   // Modals
   const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // State
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -66,6 +67,13 @@ function MainApp() {
   const metrics = useMemo(() => {
     return dashboardService.getMetrics();
   }, [partners, companies, contracts]);
+
+  const expiringContractNames = useMemo(() => {
+    return contracts
+      .filter((c) => c.daysToExpiry <= 60 && c.status !== 'Encerrado' && c.status !== 'Vencido')
+      .sort((a, b) => a.daysToExpiry - b.daysToExpiry)
+      .map((c) => c.entityName);
+  }, [contracts]);
 
   const handleConfirmDisclaimer = () => {
     appRepository.setDisclaimerSeen(true);
@@ -148,16 +156,18 @@ function MainApp() {
 
   return (
     <div className="min-h-screen bg-[#F5F7FA] text-slate-800 flex">
-      {/* 1. Fixed Sidebar */}
+      {/* 1. Fixed / Drawer Sidebar */}
       <Sidebar
         activeTab={activeTab}
         onTabChange={handleTabChange}
         pendingCount={metrics.pendingDocumentsCount}
         expiringCount={metrics.nearRenewalContractsCount}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
       />
 
-      {/* 2. Main Layout Area */}
-      <div className="flex-1 ml-60 flex flex-col min-w-0">
+      {/* 2. Main Layout Area (no static 240px margin on small screens) */}
+      <div className="flex-1 lg:ml-60 ml-0 flex flex-col min-w-0 overflow-x-hidden">
         {/* Header */}
         <Header
           searchTerm={globalSearch}
@@ -170,6 +180,8 @@ function MainApp() {
           onNavigate={handleTabChange}
           pendingCount={metrics.pendingDocumentsCount}
           expiringCount={metrics.nearRenewalContractsCount}
+          expiringContractNames={expiringContractNames}
+          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
         />
 
         {/* Content Body */}

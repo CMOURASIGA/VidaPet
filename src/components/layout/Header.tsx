@@ -7,7 +7,8 @@ import {
   ChevronDown,
   Info,
   Clock,
-  Sparkles
+  Sparkles,
+  Menu
 } from 'lucide-react';
 import { ActiveTab } from '../../types';
 
@@ -17,6 +18,8 @@ interface HeaderProps {
   onNavigate: (tab: ActiveTab) => void;
   pendingCount: number;
   expiringCount: number;
+  expiringContractNames?: string[];
+  onToggleSidebar?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -24,18 +27,33 @@ export const Header: React.FC<HeaderProps> = ({
   searchTerm,
   onNavigate,
   pendingCount,
-  expiringCount
+  expiringCount,
+  expiringContractNames = [],
+  onToggleSidebar
 }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const totalAlerts = pendingCount + expiringCount;
+  const expiringSummary = expiringContractNames.length > 0
+    ? expiringContractNames.slice(0, 3).join(', ')
+    : 'Contratos prioritários';
 
   return (
-    <header className="h-16 bg-white border-b border-slate-200/80 px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
-      {/* Search Input in Center / Left */}
-      <div className="flex-1 max-w-md">
-        <div className="relative">
+    <header className="h-16 bg-white border-b border-slate-200/80 px-4 sm:px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+      {/* Left side: Hamburger button on mobile/tablet + Search */}
+      <div className="flex items-center gap-3 flex-1 max-w-lg">
+        {onToggleSidebar && (
+          <button
+            onClick={onToggleSidebar}
+            className="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors cursor-pointer"
+            title="Abrir menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        )}
+
+        <div className="relative flex-1">
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
@@ -56,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3 ml-2">
         {/* MVP Conceitual Badge */}
         <div
           className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-md text-xs text-slate-600 cursor-help"
@@ -74,7 +92,7 @@ export const Header: React.FC<HeaderProps> = ({
               setShowUserMenu(false);
             }}
             className="relative p-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors cursor-pointer"
-            title="Notificações operacionais"
+            title="Avisos operacionais"
           >
             <Bell className="w-4 h-4" />
             {totalAlerts > 0 && (
@@ -88,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="font-semibold text-xs text-slate-800 uppercase tracking-wide">
                   Avisos Operacionais ({totalAlerts})
                 </span>
-                <span className="text-[11px] text-slate-400">Tempo real</span>
+                <span className="text-[11px] text-slate-400">Dados da demonstração</span>
               </div>
               <div className="max-h-72 overflow-y-auto divide-y divide-slate-100 text-xs">
                 {pendingCount > 0 && (
@@ -124,8 +142,8 @@ export const Header: React.FC<HeaderProps> = ({
                       <p className="font-semibold text-slate-800">
                         {expiringCount} contratos vencendo em até 60 dias
                       </p>
-                      <p className="text-slate-500 text-[11px] mt-0.5">
-                        Alfa Tecnologia, VetCare Niterói e Pet Center Icaraí.
+                      <p className="text-slate-500 text-[11px] mt-0.5 truncate">
+                        {expiringSummary}
                       </p>
                     </div>
                   </button>
@@ -225,3 +243,4 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
+

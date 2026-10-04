@@ -22,9 +22,9 @@ export const CategoryDonutChart: React.FC<{ metrics: DashboardMetrics }> = ({ me
     <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col h-full">
       <div className="flex items-center justify-between pb-3 mb-2 border-b border-slate-100">
         <h3 className="font-bold text-slate-900 text-sm">
-          Parceiros por categoria
+          Parceiros cadastrados por categoria
         </h3>
-        <span className="text-[11px] text-slate-500 font-medium">Rede credenciada</span>
+        <span className="text-[11px] text-slate-500 font-medium">Rede credenciada ({total})</span>
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-6 my-auto py-2">
@@ -105,7 +105,7 @@ export const RegionBarChart: React.FC<{ metrics: DashboardMetrics }> = ({ metric
     <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col h-full">
       <div className="flex items-center justify-between pb-3 mb-2 border-b border-slate-100">
         <h3 className="font-bold text-slate-900 text-sm">
-          Parceiros por região
+          Parceiros cadastrados por região
         </h3>
         <span className="text-[11px] text-slate-500 font-medium">Distribuição geográfica</span>
       </div>

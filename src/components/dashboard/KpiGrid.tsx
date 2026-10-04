@@ -24,7 +24,7 @@ export const KpiGrid: React.FC<KpiGridProps> = ({
       id: 'partners',
       title: 'Parceiros ativos',
       value: metrics.activePartners,
-      secondary: '↑ 8% nos últimos 90 dias',
+      secondary: `↑ 8% (de ${metrics.totalPartners} cadastrados)`,
       secondaryColor: 'text-emerald-600',
       icon: Users,
       iconBg: 'bg-emerald-50 text-[#18B77A]',

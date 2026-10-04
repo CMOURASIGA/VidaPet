@@ -43,6 +43,7 @@ export const DashboardTables: React.FC<TablesProps> = ({
                 <th className="pb-2">Nome</th>
                 <th className="pb-2">Categoria</th>
                 <th className="pb-2">Região</th>
+                <th className="pb-2">Entrada</th>
                 <th className="pb-2 text-right">Status</th>
               </tr>
             </thead>
@@ -53,14 +54,17 @@ export const DashboardTables: React.FC<TablesProps> = ({
                   onClick={() => onSelectPartner(p)}
                   className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
                 >
-                  <td className="py-2.5 font-semibold text-slate-900 group-hover:text-[#18B77A] transition-colors truncate max-w-[180px]">
+                  <td className="py-2.5 font-semibold text-slate-900 group-hover:text-[#18B77A] transition-colors truncate max-w-[170px]">
                     {p.name}
                   </td>
-                  <td className="py-2.5 text-slate-600 truncate max-w-[120px]">
+                  <td className="py-2.5 text-slate-600 truncate max-w-[110px]">
                     {p.category}
                   </td>
                   <td className="py-2.5 text-slate-500">
                     {p.region}
+                  </td>
+                  <td className="py-2.5 font-mono text-[11px] text-slate-500">
+                    {p.entryDate}
                   </td>
                   <td className="py-2.5 text-right">
                     <span

@@ -61,6 +61,10 @@ export const PartnersView: React.FC<PartnersViewProps> = ({
     });
   }, [partners, searchTerm, statusFilter, categoryFilter, regionFilter]);
 
+  const totalCadastrados = partners.length;
+  const totalAtivos = partners.filter((p) => p.status === 'Ativo').length;
+  const totalInativos = partners.filter((p) => p.status === 'Inativo' || p.daysSinceLastActivity > 90).length;
+
   const clearFilters = () => {
     setSearchTerm('');
     setStatusFilter('Todos');
@@ -73,12 +77,18 @@ export const PartnersView: React.FC<PartnersViewProps> = ({
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex flex-wrap items-center gap-2 mb-1">
             <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
               Parceiros Credenciados
             </h1>
             <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 tabular-nums">
-              {partners.length} estabelecimentos
+              {totalCadastrados} parceiros cadastrados
+            </span>
+            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 tabular-nums">
+              {totalAtivos} parceiros ativos
+            </span>
+            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 tabular-nums">
+              {totalInativos} parceiros inativos
             </span>
           </div>
           <p className="text-xs text-slate-500">

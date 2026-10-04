@@ -178,7 +178,7 @@ export const IntelligenceView: React.FC<IntelligenceViewProps> = ({ onSelectEnti
             </button>
           </form>
           <p className="text-[10px] text-slate-400 mt-2 text-center">
-            * As respostas deste MVP são geradas em tempo real a partir do dataset simulado localmente no seu navegador.
+            * As respostas desta demonstração são calculadas a partir dos dados fictícios armazenados localmente neste navegador.
           </p>
         </div>
       </div>

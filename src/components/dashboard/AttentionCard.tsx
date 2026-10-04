@@ -13,6 +13,8 @@ interface AttentionCardProps {
   pendingCount: number;
   expiringCount: number;
   inactiveCount: number;
+  expiringSubtitle?: string;
+  inactiveSubtitle?: string;
   onNavigateWithFilter: (tab: ActiveTab, filter?: string) => void;
 }
 
@@ -20,6 +22,8 @@ export const AttentionCard: React.FC<AttentionCardProps> = ({
   pendingCount,
   expiringCount,
   inactiveCount,
+  expiringSubtitle,
+  inactiveSubtitle,
   onNavigateWithFilter
 }) => {
   const alerts = [
@@ -38,7 +42,7 @@ export const AttentionCard: React.FC<AttentionCardProps> = ({
       icon: Clock,
       iconColor: 'text-amber-500 bg-amber-50',
       title: `${expiringCount} contratos vencem nos próximos 60 dias`,
-      subtitle: 'Alfa Tecnologia (42 dias), VetCare Niterói e Pet Center',
+      subtitle: expiringSubtitle || 'Renovações prioritárias mapeadas na carteira',
       badge: 'Renovação',
       badgeColor: 'bg-amber-100 text-amber-800',
       action: () => onNavigateWithFilter('contracts', 'proximos-60')
@@ -48,7 +52,7 @@ export const AttentionCard: React.FC<AttentionCardProps> = ({
       icon: UserX,
       iconColor: 'text-slate-500 bg-slate-100',
       title: `${inactiveCount} parceiros sem atividade há mais de 90 dias`,
-      subtitle: 'SOS Bichos Resgate (104 dias) e Bicho Chic (98 dias)',
+      subtitle: inactiveSubtitle || 'Sem atendimentos registrados no período',
       badge: 'Monitoramento',
       badgeColor: 'bg-slate-100 text-slate-700',
       action: () => onNavigateWithFilter('partners', 'inativo')
