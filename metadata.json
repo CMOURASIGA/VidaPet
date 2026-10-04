@@ -1,0 +1,6 @@
+{
+  "name": "VidaPet Operations Hub",
+  "description": "MVP Conceitual de Gestão Operacional e Inteligência para VidaPet Tech",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
