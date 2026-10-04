@@ -150,8 +150,8 @@ export const initialOpportunities: Opportunity[] = [
     id: 'opp-02',
     title: 'Renovação Estratégica Alfa Tecnologia',
     category: 'Renovação de contratos',
-    situation: 'Contrato vence em 42 dias. Alfa Tecnologia possui a maior taxa de adesão corporativa (62%) e 428 pets ativos.',
-    metric: 'Receita mensal de R$ 25.680/mês (R$ 308.160/ano). Sinistralidade controlada em 58%.',
+    situation: 'Contrato vence em 42 dias, com 428 aderentes e base corporativa relevante, tornando a renovação uma prioridade estratégica.',
+    metric: 'Receita mensal de R$ 25.680/mês (R$ 308.160/ano) com 428 pets vinculados (62% de adesão corporativa).',
     possibleAction: 'Apresentar proposta de renovação plurianual (24 meses) com congelamento de reajuste e inclusão de teleorientação veterinária ilimitada.',
     impactLevel: 'Estratégico',
     linkedEntityId: 'comp-01'

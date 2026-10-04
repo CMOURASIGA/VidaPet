@@ -164,18 +164,20 @@ export const intelligenceService = {
     }
 
     // Fallback general smart answer
+    const totalLinkedPets = companies.reduce((a, c) => a + c.linkedPets, 0);
+    const activePartnersCount = partners.filter((p) => p.status === 'Ativo').length;
     return {
       question: query,
-      summary: `Análise operacional consolidada: A VidaPet opera atualmente com ${partners.length} parceiros (${partners.filter((p) => p.status === 'Ativo').length} ativos), 15 empresas corporativas com 4.380 pets vinculados e 28 contratos vigentes.`,
+      summary: `Análise operacional consolidada: A VidaPet opera atualmente com ${partners.length} parceiros (${activePartnersCount} ativos), ${companies.length} empresas corporativas com ${totalLinkedPets.toLocaleString('pt-BR')} pets vinculados e ${contracts.length} contratos vigentes.`,
       details: [
-        `• Parceiros ativos: ${partners.filter((p) => p.status === 'Ativo').length} de ${partners.length} credenciados.`,
+        `• Parceiros ativos: ${activePartnersCount} de ${partners.length} cadastrados.`,
         `• Pendências documentais em aberto: ${partners.filter((p) => p.documentationStatus === 'Pendente').length} estabelecimentos.`,
         `• Contratos corporativos e de parceiros vencendo em 60 dias: ${contracts.filter((c) => c.daysToExpiry <= 60).length}.`,
         `• Cobertura crítica mapeada: Região Oceânica (3 parceiros para 420 pets).`
       ],
       metrics: [
         { label: 'Parceiros', value: `${partners.length}`, badge: 'Cadastrados' },
-        { label: 'Pets atendidos', value: '4.380 pets', badge: 'Corporativo' }
+        { label: 'Pets atendidos', value: `${totalLinkedPets.toLocaleString('pt-BR')} pets`, badge: 'Corporativo' }
       ]
     };
   }

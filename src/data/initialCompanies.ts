@@ -27,7 +27,7 @@ export const initialCompanies: Company[] = [
       { id: 'ch-02', date: '10/09/2026', title: 'Início das conversas de renovação antecipada do plano', author: 'Comercial VidaPet' },
       { id: 'ch-03', date: '15/07/2026', title: 'Campanha de adesão "Mês do Amigo Pet" realizada com RH', author: 'Marketing VidaPet' }
     ],
-    notes: 'Cliente de alto prestígio com maior índice de adesão. Contrato vence em 42 dias. Proposta de upgrade para coparticipação reduzida em negociação.'
+    notes: 'Cliente de alto prestígio com expressiva taxa de adesão (62%). Contrato vence em 42 dias. Proposta de renovação estratégica em negociação.'
   },
   {
     id: 'comp-02',

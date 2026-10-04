@@ -94,23 +94,24 @@ export const AttentionCard: React.FC<AttentionCardProps> = ({
               onClick={alert.action}
               className="p-3 rounded-xl border border-slate-100 hover:border-slate-200 hover:bg-slate-50/80 transition-all cursor-pointer flex items-center justify-between gap-3 group"
             >
-              <div className="flex items-start gap-2.5 min-w-0">
+              <div className="flex items-start gap-2.5 min-w-0 flex-1">
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${alert.iconColor}`}>
                   <Icon className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-slate-900 truncate group-hover:text-[#18B77A] transition-colors">
-                      {alert.title}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-500 truncate mt-0.5">
+                <div className="min-w-0 flex-1">
+                  <span
+                    className="text-xs font-bold text-slate-900 line-clamp-2 leading-snug group-hover:text-[#18B77A] transition-colors block"
+                    title={alert.title}
+                  >
+                    {alert.title}
+                  </span>
+                  <p className="text-[11px] text-slate-500 truncate mt-0.5" title={alert.subtitle}>
                     {alert.subtitle}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-2 shrink-0 self-center">
                 <span className={`text-[10px] font-semibold px-2 py-0.5 rounded ${alert.badgeColor}`}>
                   {alert.badge}
                 </span>

@@ -154,7 +154,7 @@ export const NetworkEvolutionChart: React.FC<{ metrics: DashboardMetrics }> = ({
   const height = 120;
   const width = 360;
   const paddingX = 24;
-  const stepX = (width - paddingX * 2) / (data.length - 1);
+  const stepX = data.length > 1 ? (width - paddingX * 2) / (data.length - 1) : 0;
 
   const points = data.map((d, i) => {
     const x = paddingX + i * stepX;
@@ -163,7 +163,36 @@ export const NetworkEvolutionChart: React.FC<{ metrics: DashboardMetrics }> = ({
   });
 
   const pathD = points.reduce((acc, p, i) => `${acc} ${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`, '');
-  const areaD = `${pathD} L ${points[points.length - 1].x} ${height} L ${points[0].x} ${height} Z`;
+  const areaD = `${pathD} L ${points[points.length - 1]?.x ?? width} ${height} L ${points[0]?.x ?? 0} ${height} Z`;
+
+  // Dynamic calculation of network evolution
+  const firstItem = data[0];
+  const lastItem = data[data.length - 1];
+  const firstVal = firstItem?.active ?? 0;
+  const lastVal = lastItem?.active ?? 0;
+  const firstMonth = firstItem?.month ?? '';
+  const lastMonth = lastItem?.month ?? '';
+
+  const diff = lastVal - firstVal;
+  const percentChange = firstVal > 0 ? (diff / firstVal) * 100 : 0;
+  const formattedPercent = Math.abs(percentChange).toLocaleString('pt-BR', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1
+  });
+
+  let badgeText = '';
+  let badgeStyle = '';
+
+  if (diff > 0) {
+    badgeText = `+${formattedPercent}% no período`;
+    badgeStyle = 'text-emerald-700 bg-emerald-50 border border-emerald-200/80';
+  } else if (diff < 0) {
+    badgeText = `-${formattedPercent}% no período`;
+    badgeStyle = 'text-rose-700 bg-rose-50 border border-rose-200/80';
+  } else {
+    badgeText = 'Estável (0,0%) no período';
+    badgeStyle = 'text-slate-600 bg-slate-100 border border-slate-200/80';
+  }
 
   return (
     <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex flex-col h-full">
@@ -172,10 +201,12 @@ export const NetworkEvolutionChart: React.FC<{ metrics: DashboardMetrics }> = ({
           <h3 className="font-bold text-slate-900 text-sm">
             Evolução da rede
           </h3>
-          <p className="text-[11px] text-slate-500">Crescimento de parceiros ativos (Abr–Out)</p>
+          <p className="text-[11px] text-slate-500">
+            Evolução da rede ativa {firstMonth && lastMonth ? `(${firstMonth}–${lastMonth})` : ''}
+          </p>
         </div>
-        <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">
-          +36% no período
+        <span className={`text-xs font-bold px-2 py-0.5 rounded ${badgeStyle}`}>
+          {badgeText}
         </span>
       </div>
 

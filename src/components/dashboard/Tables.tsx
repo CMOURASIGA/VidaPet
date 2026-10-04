@@ -37,14 +37,14 @@ export const DashboardTables: React.FC<TablesProps> = ({
         </div>
 
         <div className="overflow-x-auto flex-1">
-          <table className="w-full text-xs text-left">
+          <table className="w-full text-xs text-left min-w-[540px]">
             <thead>
               <tr className="text-slate-400 font-medium border-b border-slate-100 pb-2">
-                <th className="pb-2">Nome</th>
-                <th className="pb-2">Categoria</th>
-                <th className="pb-2">Região</th>
-                <th className="pb-2">Entrada</th>
-                <th className="pb-2 text-right">Status</th>
+                <th className="pb-2 pr-3 w-[28%]">Nome</th>
+                <th className="pb-2 pr-3 w-[20%]">Categoria</th>
+                <th className="pb-2 pr-4 pl-1 w-[22%]">Região</th>
+                <th className="pb-2 pr-4 pl-2 w-[15%]">Entrada</th>
+                <th className="pb-2 text-right w-[15%]">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -54,27 +54,40 @@ export const DashboardTables: React.FC<TablesProps> = ({
                   onClick={() => onSelectPartner(p)}
                   className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
                 >
-                  <td className="py-2.5 font-semibold text-slate-900 group-hover:text-[#18B77A] transition-colors truncate max-w-[170px]">
+                  <td
+                    className="py-2.5 pr-3 font-semibold text-slate-900 group-hover:text-[#18B77A] transition-colors truncate max-w-[150px]"
+                    title={p.name}
+                  >
                     {p.name}
                   </td>
-                  <td className="py-2.5 text-slate-600 truncate max-w-[110px]">
+                  <td
+                    className="py-2.5 pr-3 text-slate-600 truncate max-w-[110px]"
+                    title={p.category}
+                  >
                     {p.category}
                   </td>
-                  <td className="py-2.5 text-slate-500">
+                  <td
+                    className="py-2.5 pr-4 pl-1 text-slate-500 truncate max-w-[140px]"
+                    title={p.region}
+                  >
                     {p.region}
                   </td>
-                  <td className="py-2.5 font-mono text-[11px] text-slate-500">
+                  <td
+                    className="py-2.5 pr-4 pl-2 font-mono text-[11px] text-slate-500 whitespace-nowrap"
+                    title={`Data de entrada: ${p.entryDate}`}
+                  >
                     {p.entryDate}
                   </td>
-                  <td className="py-2.5 text-right">
+                  <td className="py-2.5 text-right whitespace-nowrap">
                     <span
-                      className={`text-[10px] font-semibold px-2 py-0.5 rounded ${
+                      className={`text-[10px] font-semibold px-2 py-0.5 rounded inline-block ${
                         p.status === 'Ativo'
                           ? 'bg-emerald-50 text-emerald-700'
                           : p.status === 'Pendente documentação'
                           ? 'bg-amber-50 text-amber-700'
                           : 'bg-slate-100 text-slate-600'
                       }`}
+                      title={`Status de credenciamento: ${p.status}`}
                     >
                       {p.status}
                     </span>
@@ -120,7 +133,10 @@ export const DashboardTables: React.FC<TablesProps> = ({
                   onClick={() => onSelectCompany(c)}
                   className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
                 >
-                  <td className="py-2.5 font-semibold text-slate-900 group-hover:text-[#18B77A] transition-colors truncate max-w-[160px]">
+                  <td
+                    className="py-2.5 font-semibold text-slate-900 group-hover:text-[#18B77A] transition-colors truncate max-w-[160px]"
+                    title={c.name}
+                  >
                     {c.name}
                   </td>
                   <td className="py-2.5">
@@ -140,7 +156,10 @@ export const DashboardTables: React.FC<TablesProps> = ({
                     {c.linkedPets}
                   </td>
                   <td className="py-2.5 text-right">
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                    <span
+                      className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200"
+                      title={`Plano corporativo contratado: ${c.plan}`}
+                    >
                       {c.plan}
                     </span>
                   </td>

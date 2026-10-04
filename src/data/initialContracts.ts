@@ -82,7 +82,7 @@ export const initialContracts: Contract[] = [
   },
   {
     id: 'contr-05',
-    code: 'CONTR-PART-2025-003',
+    code: 'CONTR-PART-2024-003',
     entityType: 'Parceiro',
     entityName: 'Hospital Veterinário Guanabara',
     entityId: 'part-03',
@@ -96,7 +96,7 @@ export const initialContracts: Contract[] = [
   },
   {
     id: 'contr-08',
-    code: 'CONTR-PART-2025-007',
+    code: 'CONTR-PART-2024-007',
     entityType: 'Parceiro',
     entityName: 'Dr. Felipe Guimarães - Vet Domiciliar',
     entityId: 'part-04',
@@ -110,7 +110,7 @@ export const initialContracts: Contract[] = [
   },
   {
     id: 'contr-11',
-    code: 'CONTR-PART-2025-010',
+    code: 'CONTR-PART-2024-010',
     entityType: 'Parceiro',
     entityName: 'Creche & Hotel Patas Felizes',
     entityId: 'part-05',
@@ -124,7 +124,7 @@ export const initialContracts: Contract[] = [
   },
   {
     id: 'contr-13',
-    code: 'CONTR-PART-2025-014',
+    code: 'CONTR-PART-2024-014',
     entityType: 'Parceiro',
     entityName: 'Pet Point Charitas',
     entityId: 'part-06',
@@ -138,7 +138,7 @@ export const initialContracts: Contract[] = [
   },
   {
     id: 'contr-14',
-    code: 'CONTR-PART-2025-015',
+    code: 'CONTR-PART-2024-015',
     entityType: 'Parceiro',
     entityName: 'SOS Bichos Resgate & Proteção',
     entityId: 'part-07',
@@ -336,7 +336,7 @@ export const initialContracts: Contract[] = [
   },
   {
     id: 'contr-18',
-    code: 'CONTR-PART-2025-019',
+    code: 'CONTR-PART-2024-018',
     entityType: 'Parceiro',
     entityName: 'Clínica Oceânica Pet',
     entityId: 'part-09',
