@@ -212,7 +212,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-slate-200 py-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 text-xs">
               <div className="px-3 py-2 border-b border-slate-100">
                 <p className="font-semibold text-slate-800">André</p>
-                <p className="text-slate-500 text-[11px]">andre@vidapet.tech</p>
+                <p className="text-slate-500 text-[11px]">VidaPet Tech</p>
               </div>
               <button
                 onClick={() => {
